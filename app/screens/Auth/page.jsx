@@ -1,16 +1,17 @@
 "use client";
+
 import { useEffect } from "react";
-import ChatContainer from "@/components/chat/ChatContainer";
-import verifyToken from "@/utils/verifyToken";
 import { useRouter } from "next/navigation";
+import AuthForm from "@/components/auth/AuthForm";
+import verifyToken from "@/utils/verifyToken";
 
 export default function Page() {
   const router = useRouter();
 
-  // Verify token on initial load
+  // Redirect if already authenticated
   useEffect(() => {
     verifyToken(router);
   }, [router]);
 
-  return <ChatContainer />;
+  return <AuthForm />;
 }

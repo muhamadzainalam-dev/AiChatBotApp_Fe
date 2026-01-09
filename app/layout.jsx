@@ -1,4 +1,5 @@
 import "./globals.css";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 export const metadata = {
   title: "LOTA AI",
@@ -8,7 +9,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <GoogleOAuthProvider clientId="828416886131-q4n0lndnrnu6qa2pnl34gh0uo9qvdi99.apps.googleusercontent.com">
+          {children}
+        </GoogleOAuthProvider>
+      </body>
     </html>
   );
 }

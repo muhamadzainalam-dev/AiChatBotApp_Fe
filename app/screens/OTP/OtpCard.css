@@ -1,0 +1,145 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+
+.otp-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: linear-gradient(#1e1f29, #34354a);
+  font-family: "Poppins", sans-serif;
+}
+
+.otp-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  width: 460px;
+  padding: 50px;
+  text-align: center;
+  color: white;
+}
+
+.otp-title {
+  margin-bottom: 8px;
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+}
+
+.otp-subtitle {
+  color: #ccc;
+  font-size: 0.95rem;
+  margin-bottom: 25px;
+}
+
+.otp-input-group {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.otp-input {
+  width: 48px;
+  height: 56px;
+  text-align: center;
+  border: none;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 600;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.otp-input:focus {
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+}
+
+.otp-timer {
+  color: #ccc;
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+}
+
+.otp-timer .warning {
+  color: #ff5f6d;
+  font-weight: 600;
+}
+
+.otp-timer .expired {
+  color: #ff5f6d;
+  font-weight: 600;
+}
+
+.otp-button {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  border: none;
+  padding: 14px;
+  border-radius: 10px;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+  width: 100%;
+}
+
+.otp-button:disabled {
+  background: rgba(255, 255, 255, 0.2);
+  cursor: not-allowed;
+  color: #bbb;
+}
+
+.resend-button {
+  margin-top: 15px;
+  background: transparent;
+  border: 1px solid #00b4ff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  color: #00b4ff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.resend-button:hover {
+  background: rgba(0, 180, 255, 0.15);
+}
+
+.otp-message {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.otp-message.success {
+  background: rgba(34, 197, 94, 0.15);
+  color: #16a34a;
+  border: 1px solid #16a34a;
+}
+
+.otp-message.error {
+  background: rgba(239, 68, 68, 0.15);
+  color: #dc2626;
+  border: 1px solid #dc2626;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .otp-card {
+    width: 90%;
+    padding: 30px;
+  }
+
+  .otp-input {
+    width: 42px;
+    height: 50px;
+    font-size: 1.3rem;
+  }
+}
