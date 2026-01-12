@@ -12,6 +12,8 @@ import {
   MoreHorizontal,
 } from "lucide-react";
 import UserMenu from "@/components/common/UserMenu";
+import useSocket from "@/hooks/useSocket";
+import { requestPushPermission } from "@/utils/pushNotifications";
 
 export default function ChatContainer() {
   const [messages, setMessages] = useState([]);
@@ -21,6 +23,34 @@ export default function ChatContainer() {
   const [userdetails, setUserDetails] = useState(null);
   const [loadingUser, setLoadingUser] = useState(true);
   const [conversationId, setConversationId] = useState(null);
+
+  const showNotification = (title, body) => {
+    if (!("Notification" in window)) return;
+
+    if (Notification.permission === "granted") {
+      new Notification(title, {
+        body,
+        icon: "/notification-icon.png", // optional
+        badge: "/badge.png", // optional
+      });
+    }
+  };
+
+  // Socket setup
+  useSocket(userdetails?.email, (data) => {
+    // Show device/browser notification
+    showNotification(`Reminder: ${data.title}`, data.description);
+
+    // Add message to chat
+    setMessages((prev) => [
+      ...prev,
+      {
+        id: Date.now(),
+        sender: "bot",
+        text: `Reminder: ${data.title} — ${data.description}`,
+      },
+    ]);
+  });
 
   //  Scroll on new message
   useEffect(() => {
@@ -68,6 +98,13 @@ export default function ChatContainer() {
 
     fetchUser();
   }, [token]);
+
+  // Ask push notification permission
+  useEffect(() => {
+    if (!userdetails?.email) return;
+
+    requestPushPermission(userdetails.email);
+  }, [userdetails]);
 
   //  Load chat history
   useEffect(() => {
