@@ -14,6 +14,7 @@ import {
 import UserMenu from "@/components/common/UserMenu";
 import useSocket from "@/hooks/useSocket";
 import { requestPushPermission } from "@/utils/pushNotifications";
+import OnboardingGuide from "@/components/custom/OnboardingGuide";
 
 export default function ChatContainer() {
   const [messages, setMessages] = useState([]);
@@ -281,39 +282,42 @@ Be natural, warm, and context-aware.
 
   //  UI
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-[#0e1116] via-[#14171d] to-[#1b1f27] relative flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-0 flex flex-col">
-        <header className="flex justify-between items-center px-4 md:px-8 pt-6 pb-4">
-          <div className="flex items-center gap-2 text-gray-300 text-sm font-medium">
-            <Flower size={18} />
-            <span>Assistant v0.0</span>
+    <>
+      <OnboardingGuide />
+      <div className="h-screen w-full bg-gradient-to-br from-[#0e1116] via-[#14171d] to-[#1b1f27] relative flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 flex flex-col">
+          <header className="flex justify-between items-center px-4 md:px-8 pt-6 pb-4">
+            <div className="flex items-center gap-2 text-gray-300 text-sm font-medium">
+              <Flower size={18} />
+              <span>Assistant v0.0</span>
+            </div>
+            <UserMenu onClearChat={clearChat} />
+          </header>
+
+          <div className="flex-1 overflow-y-auto px-4 md:px-14 pt-6 pb-40 scrollbar-hide">
+            <MessageList messages={messages} bottomRef={bottomRef} />
           </div>
-          <UserMenu onClearChat={clearChat} />
-        </header>
 
-        <div className="flex-1 overflow-y-auto px-4 md:px-14 pt-6 pb-40 scrollbar-hide">
-          <MessageList messages={messages} bottomRef={bottomRef} />
-        </div>
+          <div className="fixed bottom-0 md:bottom-5 left-0 w-full px-4 md:px-14 pb-6 z-50">
+            <div className="max-w-3xl mx-auto">
+              <div className="bg-[#1b1f27]/70 rounded-full md:rounded-[32px] border border-[#2f333d] backdrop-blur-xl p-3">
+                <MessageInput onSend={sendMessage} />
 
-        <div className="fixed bottom-0 md:bottom-5 left-0 w-full px-4 md:px-14 pb-6 z-50">
-          <div className="max-w-3xl mx-auto">
-            <div className="bg-[#1b1f27]/70 rounded-full md:rounded-[32px] border border-[#2f333d] backdrop-blur-xl p-3">
-              <MessageInput onSend={sendMessage} />
+                <div className="hidden md:flex flex-wrap gap-2 px-2 pb-1 mt-2">
+                  <GlassChip icon={Lightbulb} label="Deep Research" />
+                  <GlassChip icon={ImageIcon} label="Make an Image" />
+                  <GlassChip icon={Search} label="Search" />
+                  <GlassChip icon={Music} label="Create Music" />
 
-              <div className="hidden md:flex flex-wrap gap-2 px-2 pb-1 mt-2">
-                <GlassChip icon={Lightbulb} label="Deep Research" />
-                <GlassChip icon={ImageIcon} label="Make an Image" />
-                <GlassChip icon={Search} label="Search" />
-                <GlassChip icon={Music} label="Create Music" />
-
-                <div className="w-8 h-8 rounded-full bg-[#1f232b] border border-[#2f333d] flex items-center justify-center text-gray-300">
-                  <MoreHorizontal size={16} />
+                  <div className="w-8 h-8 rounded-full bg-[#1f232b] border border-[#2f333d] flex items-center justify-center text-gray-300">
+                    <MoreHorizontal size={16} />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
