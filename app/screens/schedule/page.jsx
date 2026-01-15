@@ -38,7 +38,7 @@ export default function SchedulePage() {
   const [token, setToken] = useState(null);
   const [userdetails, setUserDetails] = useState(null);
   const [loadingUser, setLoadingUser] = useState(true);
-  const API_BASE = "http://localhost:8000";
+  const API_BASE = "https://aichatbot-be-44hu.onrender.com";
 
   // Read token once
   useEffect(() => {
@@ -52,11 +52,14 @@ export default function SchedulePage() {
 
     const fetchUser = async () => {
       try {
-        const res = await fetch("http://localhost:8000/userdetails", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ token }),
-        });
+        const res = await fetch(
+          "https://aichatbot-be-44hu.onrender.com/userdetails",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ token }),
+          }
+        );
 
         const result = await res.json();
         setUserDetails(result.userDetails || null);
@@ -159,11 +162,14 @@ export default function SchedulePage() {
 
   const handleDelete = async (id) => {
     try {
-      const res = await fetch("http://localhost:8000/deleteschedule", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id }),
-      });
+      const res = await fetch(
+        "https://aichatbot-be-44hu.onrender.com/deleteschedule",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ id }),
+        }
+      );
 
       const result = await res.json();
 

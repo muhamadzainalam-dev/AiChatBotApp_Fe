@@ -8,11 +8,14 @@ export default async function verifyToken(router) {
   }
 
   try {
-    const res = await fetch("http://localhost:8000/tokenverify", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ token }),
-    });
+    const res = await fetch(
+      "https://aichatbot-be-44hu.onrender.com/tokenverify",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token }),
+      }
+    );
 
     const data = await res.json();
 

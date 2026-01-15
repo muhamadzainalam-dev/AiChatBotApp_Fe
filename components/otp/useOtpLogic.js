@@ -100,7 +100,7 @@ export default function useOtpLogic() {
     }
 
     try {
-      const res = await fetch("http://localhost:8000/verify", {
+      const res = await fetch("https://aichatbot-be-44hu.onrender.com/verify", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, OTP: entered }),

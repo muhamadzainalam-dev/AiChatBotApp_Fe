@@ -24,11 +24,14 @@ export function useUserIdentity() {
 
     const fetchIdentity = async () => {
       try {
-        const res = await fetch("http://localhost:8000/userdetails", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ token: identityToken }),
-        });
+        const res = await fetch(
+          "https://aichatbot-be-44hu.onrender.com/userdetails",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ token: identityToken }),
+          }
+        );
 
         const result = await res.json();
         const user = result?.userDetails;

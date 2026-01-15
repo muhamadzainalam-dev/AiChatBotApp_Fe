@@ -27,11 +27,14 @@ export default function AuthForm() {
     const payload = isLogin ? { email, password } : { name, email, password };
 
     try {
-      const res = await fetch(`http://localhost:8000/${endpoint}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
+      const res = await fetch(
+        `https://aichatbot-be-44hu.onrender.com/${endpoint}`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        }
+      );
 
       const data = await res.json();
 

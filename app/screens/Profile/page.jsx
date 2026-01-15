@@ -40,11 +40,14 @@ export default function Profile() {
 
     const verifyToken = async () => {
       try {
-        const res = await fetch("http://localhost:8000/tokenverify", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ token }),
-        });
+        const res = await fetch(
+          "https://aichatbot-be-44hu.onrender.com/tokenverify",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ token }),
+          }
+        );
 
         if (!res.ok) {
           router.push("/screens/Auth");
@@ -63,11 +66,14 @@ export default function Profile() {
 
     const fetchUser = async () => {
       try {
-        const res = await fetch("http://localhost:8000/userdetails", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ token }),
-        });
+        const res = await fetch(
+          "https://aichatbot-be-44hu.onrender.com/userdetails",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ token }),
+          }
+        );
 
         const result = await res.json();
         const user = result.userDetails;
@@ -99,7 +105,7 @@ export default function Profile() {
 
     try {
       setUploading(true);
-      const res = await fetch("http://localhost:8000/upload", {
+      const res = await fetch("https://aichatbot-be-44hu.onrender.com/upload", {
         method: "POST",
         body: formData,
       });

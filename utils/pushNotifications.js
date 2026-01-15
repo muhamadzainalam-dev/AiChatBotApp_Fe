@@ -16,7 +16,7 @@ export const requestPushPermission = async (email) => {
 
     if (!token) return;
 
-    await fetch("http://localhost:8000/savepushtoken", {
+    await fetch("https://aichatbot-be-44hu.onrender.com/savepushtoken", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, token }),

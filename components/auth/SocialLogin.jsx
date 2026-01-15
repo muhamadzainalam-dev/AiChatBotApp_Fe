@@ -8,11 +8,14 @@ export default function SocialLogin() {
   // Send Google token to backend
   const sendUserInfo = async (tokenResponse) => {
     try {
-      const res = await fetch("http://localhost:8000/googlelogin", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(tokenResponse),
-      });
+      const res = await fetch(
+        "https://aichatbot-be-44hu.onrender.com/googlelogin",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(tokenResponse),
+        }
+      );
 
       const data = await res
         .json()

@@ -81,11 +81,14 @@ export default function ChatContainer() {
 
     const fetchUser = async () => {
       try {
-        const res = await fetch("http://localhost:8000/userdetails", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ token }),
-        });
+        const res = await fetch(
+          "https://aichatbot-be-44hu.onrender.com/userdetails",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ token }),
+          }
+        );
 
         const result = await res.json();
         setUserDetails(result.userDetails || null);
@@ -113,7 +116,7 @@ export default function ChatContainer() {
     const loadHistory = async () => {
       try {
         const res = await fetch(
-          `http://localhost:8000/history?email=${userdetails.email}&conversationId=${conversationId}`
+          `https://aichatbot-be-44hu.onrender.com/history?email=${userdetails.email}&conversationId=${conversationId}`
         );
 
         const data = await res.json();
@@ -139,7 +142,7 @@ export default function ChatContainer() {
   const saveMessage = async (role, content) => {
     if (!userdetails || !conversationId) return;
 
-    await fetch("http://localhost:8000/message", {
+    await fetch("https://aichatbot-be-44hu.onrender.com/message", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -182,7 +185,7 @@ export default function ChatContainer() {
         const data = await res.json();
         if (data.error) throw new Error("Reminder parse failed");
 
-        await fetch("http://localhost:8000/addschedule", {
+        await fetch("https://aichatbot-be-44hu.onrender.com/addschedule", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -255,7 +258,7 @@ Be natural, warm, and context-aware.
     if (!userdetails || !conversationId) return;
 
     try {
-      await fetch("http://localhost:8000/clear-chat", {
+      await fetch("https://aichatbot-be-44hu.onrender.com/clear-chat", {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
